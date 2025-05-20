@@ -1,53 +1,36 @@
 package com.evento.servicioEvento.service;
 
-import com.evento.servicioEvento.dto.*;
-import com.evento.servicioEvento.model.EventEntity;
-import com.evento.servicioEvento.repository.EventRepository;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.evento.servicioEvento.model.Evento;
+import com.evento.servicioEvento.repository.EventoRepository;
 
-@Service
-public class EventService {
+import jakarta.transaction.Transactional;
+
+@Service // Indica que esta clase es un servicio
+@Transactional // Indica que los métodos de esta clase están en una transacción
+public class EventoService {
 
     @Autowired
-    private EventRepository repository;
+    private EventoRepository eventoRepository;
 
-    public List<EventEntity> findAll() {
-        return repository.findAll();
+    public List<Evento> findAll() {
+        return eventoRepository.findAll();
     }
 
-    public Optional<EventEntity> findById(Long id) {
-        return repository.findById(id);
+    public Optional<Evento> findById(Long id) {
+        return eventoRepository.findById(id);
     }
 
-    public EventEntity create(EventCreateDTO dto) {
-        EventEntity evento = new EventEntity();
-        evento.setTitulo(dto.getTitulo());
-        evento.setDescripcion(dto.getDescripcion());
-        evento.setUbicacion(dto.getUbicacion());
-        evento.setFechaInicio(dto.getFechaInicio());
-        evento.setFechaFin(dto.getFechaFin());
-        evento.setUsuarioId(dto.getUsuarioId());
-        return repository.save(evento);
-    }
-
-    public Optional<EventEntity> update(Long id, EventUpdateDTO dto) {
-        return repository.findById(id).map(evento -> {
-            evento.setTitulo(dto.getTitulo());
-            evento.setDescripcion(dto.getDescripcion());
-            evento.setUbicacion(dto.getUbicacion());
-            evento.setFechaInicio(dto.getFechaInicio());
-            evento.setFechaFin(dto.getFechaFin());
-            evento.setUsuarioId(dto.getUsuarioId());
-            return repository.save(evento);
-        });
+    public Evento save(Evento evento) {
+        return eventoRepository.save(evento);
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        eventoRepository.deleteById(id);
     }
 }
