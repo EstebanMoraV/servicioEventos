@@ -1,4 +1,4 @@
-package com.evento.servicioEvento.service;
+package com.grupo6.servicioEventos.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.evento.servicioEvento.model.Evento;
-import com.evento.servicioEvento.repository.EventoRepository;
+import com.grupo6.servicioEventos.model.Evento;
+import com.grupo6.servicioEventos.repository.EventoRepository;
 
 import jakarta.transaction.Transactional;
 
