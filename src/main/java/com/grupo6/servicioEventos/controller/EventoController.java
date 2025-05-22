@@ -29,14 +29,23 @@ public class EventoController {
     public ResponseEntity<List<Evento>> getAllEventos() {
         List<Evento> eventos = eventoService.findAll();
         if (eventos.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Si la lista está vacía, devuelve un código 204 No Content
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(eventos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Evento> getEventoById(@PathVariable Long id) {
+    public ResponseEntity<Evento> getEventoById(@PathVariable Integer id) {
         Optional<Evento> evento = eventoService.findById(id);
+        return evento
+                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<Evento> getEventoByTitulo(@PathVariable String titulo) {
+        Optional<Evento> evento = eventoService.findByTitulo(titulo);
         return evento
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -53,7 +62,7 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Evento> updateEvento(@PathVariable Long id, @RequestBody Evento evento) {
+    public ResponseEntity<Evento> updateEvento(@PathVariable Integer id, @RequestBody Evento evento) {
         Optional<Evento> eventData = eventoService.findById(id);
 
         if (eventData.isPresent()) {
@@ -72,7 +81,7 @@ public class EventoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteEvento(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteEvento(@PathVariable Integer id) {
         try {
             eventoService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

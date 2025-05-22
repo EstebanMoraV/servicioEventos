@@ -22,15 +22,19 @@ public class EventoService {
         return eventoRepository.findAll();
     }
 
-    public Optional<Evento> findById(Long id) {
+    public Optional<Evento> findById(Integer id) {
         return eventoRepository.findById(id);
+    }
+
+    public Optional<Evento> findByTitulo(String titulo) {
+        return eventoRepository.findByTitulo(titulo);
     }
 
     public Evento save(Evento evento) {
         return eventoRepository.save(evento);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         eventoRepository.deleteById(id);
     }
 }

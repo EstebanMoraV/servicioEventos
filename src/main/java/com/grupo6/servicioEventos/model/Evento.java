@@ -27,7 +27,7 @@ public class Evento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false, length = 100)
     private String titulo;
@@ -36,12 +36,12 @@ public class Evento {
     private String descripcion;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
 
@@ -49,12 +49,12 @@ public class Evento {
     private String ubicacion;
 
     @Column(nullable = false, updatable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MHHM-yyyy HH:mm:ss", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
 
     @Column(nullable = true)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MHHM-yyyy HH:mm:ss", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
 
