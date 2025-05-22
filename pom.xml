@@ -8,11 +8,11 @@
 		<version>3.3.11</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.grupo6</groupId>
-	<artifactId>servicioEventos</artifactId>
+	<groupId>com.usuario</groupId>
+	<artifactId>servicioUsuario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>servicioEventos</name>
-	<description>Este microservicio es el encargado de los eventos.</description>
+	<name>servicioUsuario</name>
+	<description>Acá vamos a generar la creación y edición de los distintos usuarios de este microservicio.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -36,19 +36,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -62,11 +52,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

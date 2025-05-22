@@ -49,12 +49,12 @@ public class Evento {
     private String ubicacion;
 
     @Column(nullable = false, updatable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MHHM-yyyy HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
 
     @Column(nullable = true)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MHHM-yyyy HH:mm:ss", timezone = "America/Santiago")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm", timezone = "America/Santiago")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
 
