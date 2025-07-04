@@ -18,14 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grupo6.servicioEventos.model.Evento;
 import com.grupo6.servicioEventos.service.EventoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/v1/eventos")
+@Tag(name = "Eventos", description = "Operaciones relacionadas con eventos")
 public class EventoController {
 
     @Autowired
     private EventoService eventoService;
 
     @GetMapping
+    @Operation(summary = "Obtener todos los eventos", description = "Devuelve una lista de todos los eventos registrados")
     public ResponseEntity<List<Evento>> getAllEventos() {
         List<Evento> eventos = eventoService.findAll();
         if (eventos.isEmpty()) {
@@ -35,6 +40,7 @@ public class EventoController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener evento por ID", description = "Devuelve un evento específico por su ID")
     public ResponseEntity<Evento> getEventoById(@PathVariable Integer id) {
         Optional<Evento> evento = eventoService.findById(id);
         return evento
@@ -44,6 +50,7 @@ public class EventoController {
 
 
     @GetMapping("/titulo/{titulo}")
+    @Operation(summary = "Obtener evento por título", description = "Devuelve un evento específico por su título")
     public ResponseEntity<Evento> getEventoByTitulo(@PathVariable String titulo) {
         Optional<Evento> evento = eventoService.findByTitulo(titulo);
         return evento
@@ -52,6 +59,7 @@ public class EventoController {
     }
 
     @PostMapping
+    @Operation(summary = "Crear un nuevo evento", description = "Registra un nuevo evento en el sistema")
     public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) {
         try {
             Evento createdEvento = eventoService.save(evento);
@@ -62,6 +70,7 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar un evento", description = "Actualiza los detalles de un evento existente")
     public ResponseEntity<Evento> updateEvento(@PathVariable Integer id, @RequestBody Evento evento) {
         Optional<Evento> eventData = eventoService.findById(id);
 
@@ -81,6 +90,7 @@ public class EventoController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar un evento", description = "Elimina un evento específico por su ID")
     public ResponseEntity<HttpStatus> deleteEvento(@PathVariable Integer id) {
         try {
             eventoService.delete(id);
