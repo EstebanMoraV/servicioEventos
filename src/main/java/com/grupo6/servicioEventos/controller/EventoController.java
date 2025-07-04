@@ -49,15 +49,6 @@ public class EventoController {
     }
 
 
-    @GetMapping("/titulo/{titulo}")
-    @Operation(summary = "Obtener evento por título", description = "Devuelve un evento específico por su título")
-    public ResponseEntity<Evento> getEventoByTitulo(@PathVariable String titulo) {
-        Optional<Evento> evento = eventoService.findByTitulo(titulo);
-        return evento
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
     @PostMapping
     @Operation(summary = "Crear un nuevo evento", description = "Registra un nuevo evento en el sistema")
     public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) {

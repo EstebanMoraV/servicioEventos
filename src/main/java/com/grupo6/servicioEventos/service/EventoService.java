@@ -26,9 +26,6 @@ public class EventoService {
         return eventoRepository.findById(id);
     }
 
-    public Optional<Evento> findByTitulo(String titulo) {
-        return eventoRepository.findByTitulo(titulo);
-    }
 
     public Evento save(Evento evento) {
         return eventoRepository.save(evento);

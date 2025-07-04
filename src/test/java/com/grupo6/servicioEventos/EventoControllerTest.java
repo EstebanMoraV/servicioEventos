@@ -93,25 +93,6 @@ public class EventoControllerTest {
     }
 
     @Test
-    @DisplayName("✅ Debería obtener evento por título")
-    void testObtenerEventoPorTitulo() throws Exception {
-        when(eventoService.findByTitulo("Título de prueba")).thenReturn(Optional.of(crearEventoEjemplo()));
-
-        mockMvc.perform(get("/api/v1/eventos/titulo/Título de prueba"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.titulo").value("Título de prueba"));
-    }
-
-    @Test
-    @DisplayName("❌ Debería retornar 404 si el título no existe")
-    void testObtenerEventoPorTituloNoExiste() throws Exception {
-        when(eventoService.findByTitulo("Inexistente")).thenReturn(Optional.empty());
-
-        mockMvc.perform(get("/api/v1/eventos/titulo/Inexistente"))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
     @DisplayName("✅ Debería crear un evento")
     void testCrearEvento() throws Exception {
         Evento evento = crearEventoEjemplo();
